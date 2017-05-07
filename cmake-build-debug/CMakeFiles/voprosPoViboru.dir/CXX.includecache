@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/susliko/CLionProjects/voprosPoViboru/src/Physics.cpp
+
+/home/susliko/CLionProjects/voprosPoViboru/src/main.cpp
+iostream
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/voprosPoViboru.dir/src/main.cpp.o CMakeFiles/voprosPoViboru.dir/src/Physics.cpp.o  -o voprosPoViboru 
