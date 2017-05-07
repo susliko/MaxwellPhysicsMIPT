@@ -1,9 +1,4 @@
-//
-// Created by susliko on 5/8/17.
-//
-
-#ifndef VOPROSPOVIBORU_ATOM_H
-#define VOPROSPOVIBORU_ATOM_H
+#pragma once
 
 struct Atom{
     double x;
@@ -12,4 +7,3 @@ struct Atom{
     double vy;
 };
 
-#endif //VOPROSPOVIBORU_ATOM_H

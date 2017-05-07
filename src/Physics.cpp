@@ -1,7 +1,3 @@
-//
-// Created by susliko on 5/8/17.
-//
-
 #include "../include/Physics.h"
 
 Physics::Physics():

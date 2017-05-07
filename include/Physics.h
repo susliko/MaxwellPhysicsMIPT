@@ -1,9 +1,4 @@
-//
-// Created by susliko on 5/8/17.
-//
-
-#ifndef VOPROSPOVIBORU_PHYSICS_H
-#define VOPROSPOVIBORU_PHYSICS_H
+#pragma once
 
 #include <vector>
 #include "Atom.h"
@@ -27,5 +22,3 @@ private:
     const double t;
     const int n;
 };
-
-#endif //VOPROSPOVIBORU_PHYSICS_H
