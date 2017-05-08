@@ -25,6 +25,7 @@ private:
     const double m;
     const double t;
     const unsigned n;
+    const unsigned maxVelocity_;
 
     const unsigned windowWidth_;
     const unsigned windowHeight_;
