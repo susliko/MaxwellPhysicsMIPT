@@ -15,10 +15,18 @@ private:
     void drawArena();
     void drawPlot();
 
+    void buildArena();
+    void processEvents();
+
     std::vector<Atom> atoms_;
 
+    const sf::Time dt;
     const double r;
     const double m;
     const double t;
-    const int n;
+    const unsigned n;
+
+    const unsigned windowWidth_;
+    const unsigned windowHeight_;
+    sf::Window window_;
 };
