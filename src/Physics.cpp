@@ -1,11 +1,12 @@
 #include <iostream>
 #include "../include/Physics.h"
+#include "../include/Utility.h"
 
 Physics::Physics()
     : m(0)
     , r(10)
     , t(0)
-    , n(2)
+    , n(200)
     , maxVelocity_(250)
     , windowWidth_(1366 / 2)
     , windowHeight_(700)
@@ -91,8 +92,23 @@ void Physics::update() {
                 atom1 = atom2;
                 atom2 = tmp;
 
-//                sf::Vector2f delta(atom1.x - atom2.x, atom1.y - atom2.y);
+                sf::Vector2f delta(atom1.x - atom2.x, atom1.y - atom2.y);
+                sf::Vector2f v1(atom1.vx, atom1.vy);
+                sf::Vector2f v2(atom2.vx, atom2.vy);
 
+                sf::Vector2f v1n = projection(-delta, v1);
+                sf::Vector2f v2n = projection(delta, v2);
+
+                sf::Vector2f v1tg = v1 - v1n;
+                sf::Vector2f v2tg = v1 - v2n;
+
+                v1 = v1 - v1n + v2n;
+                v2 = v2 - v2n + v1n;
+
+                atom1.vx = v1.x;
+                atom1.vy = v1.y;
+                atom2.vx = v2.x;
+                atom2.vy = v2.y;
             }
         }
 }
