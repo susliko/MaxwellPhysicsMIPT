@@ -1,9 +1,12 @@
 #pragma once
 
+#include <cmath>
+
 struct Atom{
-    double x;
-    double y;
-    double vx;
-    double vy;
+    float x;
+    float y;
+    float vx;
+    float vy;
 };
 
+float getDistanceSqr(const Atom & atom1, const Atom & atom2);
