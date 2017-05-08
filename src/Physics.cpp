@@ -5,8 +5,8 @@ Physics::Physics()
     : m(0)
     , r(10)
     , t(0)
-    , n(50)
-    , maxVelocity_(100)
+    , n(200)
+    , maxVelocity_(250)
     , windowWidth_(1366 / 2)
     , windowHeight_(700)
     , window_(sf::VideoMode(windowWidth_, windowHeight_), "Maxwell")
@@ -39,8 +39,8 @@ void Physics::buildArena() {
         Atom atom;
         atom.x = rand() % windowWidth_;
         atom.y = rand() % windowHeight_;
-        atom.vx = rand() % maxVelocity_;
-        atom.vy = rand() % maxVelocity_;
+        atom.vx = (float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
+        atom.vy = (float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
 //        std::cout << atom.x << "; " << atom.y << " / " << atom.vx << "; " << atom.vy << "\n";
         atoms_.push_back(std::move(atom));
     }
@@ -58,18 +58,44 @@ void Physics::processEvents() {
 }
 
 
-void Physics::update() {}
+void Physics::update() {
+    for (Atom & atom : atoms_) {
+        // Обработка столкновений со стеной
+        if (atom.x < r) {
+            atom.vx = -atom.vx;
+            atom.x = r;
+        }
+        else if (atom.x > windowWidth_ - r) {
+            atom.vx = -atom.vx;
+            atom.x = windowWidth_ - r;
+        }
+        if (atom.y < r) {
+            atom.vy = -atom.vy;
+            atom.y = r;
+        }
+        else if (atom.y > windowHeight_ - r) {
+            atom.vy = -atom.vy;
+            atom.y = windowHeight_ - r;
+        }
+
+//        std::cout << atom.x << ' ' << atom.vx << ' ' << dt.asSeconds() << '\n';
+        // Увеличние скоростей
+        atom.x += atom.vx * dt.asSeconds();
+        atom.y += atom.vy * dt.asSeconds();
+    }
+}
 
 
 
 void Physics::drawArena() {
     window_.clear();
     for (const Atom & atom : atoms_) {
-        sf::CircleShape rect(r);
-        rect.setPosition(atom.x, atom.y);
-        rect.setFillColor(sf::Color::Cyan);
+        sf::CircleShape shape(r);
+        shape.setOrigin(r, r);
+        shape.setPosition(atom.x, atom.y);
+        shape.setFillColor(sf::Color::Cyan);
         window_.setView(window_.getDefaultView());
-        window_.draw(rect);
+        window_.draw(shape);
     }
     window_.display();
 }
