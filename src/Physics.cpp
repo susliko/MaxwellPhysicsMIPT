@@ -4,10 +4,10 @@
 
 Physics::Physics(unsigned n, unsigned maxVelocity, float r)
     : m(0)
-    , r(10)
+    , r(r)
     , t(0)
-    , n(200)
-    , maxVelocity_(250)
+    , n(n)
+    , maxVelocity_(maxVelocity)
     , windowWidth_(650)
     , windowHeight_(700)
     , window_(sf::VideoMode(windowWidth_, windowHeight_), "Maxwell")
