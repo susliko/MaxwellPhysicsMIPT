@@ -10,7 +10,7 @@ Physics::Physics()
     , windowWidth_(1366 / 2)
     , windowHeight_(700)
     , window_(sf::VideoMode(windowWidth_, windowHeight_), "Maxwell")
-    , dt(sf::seconds(1.f/60.f)){}
+    , dt(sf::seconds(1.f / 60.f)){}
 
 
 
@@ -41,7 +41,6 @@ void Physics::buildArena() {
         atom.y = rand() % windowHeight_;
         atom.vx = (float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
         atom.vy = (float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
-//        std::cout << atom.x << "; " << atom.y << " / " << atom.vx << "; " << atom.vy << "\n";
         atoms_.push_back(std::move(atom));
     }
 }
@@ -78,11 +77,21 @@ void Physics::update() {
             atom.y = windowHeight_ - r;
         }
 
-//        std::cout << atom.x << ' ' << atom.vx << ' ' << dt.asSeconds() << '\n';
         // Увеличние скоростей
         atom.x += atom.vx * dt.asSeconds();
         atom.y += atom.vy * dt.asSeconds();
     }
+
+    for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++) {
+            Atom & atom1 = atoms_[i];
+            Atom & atom2 = atoms_[j];
+            if (getDistance(atom1, atom2) < 2 * r) {
+                Atom tmp = atom1;
+                atom1 = atom2;
+                atom2 = tmp;
+            }
+        }
 }
 
 

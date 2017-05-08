@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+
 struct Atom{
     float x;
     float y;
@@ -7,3 +9,4 @@ struct Atom{
     float vy;
 };
 
+float getDistance(const Atom & atom1, const Atom & atom2);
