@@ -21,13 +21,13 @@ private:
     std::vector<Atom> atoms_;
 
     const sf::Time dt;
-    const double r;
-    const double m;
-    const double t;
+    const float r;
+    const float m;
+    const float t;
     const unsigned n;
     const unsigned maxVelocity_;
 
     const unsigned windowWidth_;
     const unsigned windowHeight_;
-    sf::Window window_;
+    sf::RenderWindow window_;
 };

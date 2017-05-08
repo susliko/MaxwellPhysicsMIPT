@@ -3,12 +3,12 @@
 
 Physics::Physics()
     : m(0)
-    , r(0)
+    , r(10)
     , t(0)
     , n(50)
     , maxVelocity_(100)
     , windowWidth_(1366 / 2)
-    , windowHeight_(768)
+    , windowHeight_(700)
     , window_(sf::VideoMode(windowWidth_, windowHeight_), "Maxwell")
     , dt(sf::seconds(1.f/60.f)){}
 
@@ -62,7 +62,17 @@ void Physics::update() {}
 
 
 
-void Physics::drawArena() {}
+void Physics::drawArena() {
+    window_.clear();
+    for (const Atom & atom : atoms_) {
+        sf::CircleShape rect(r);
+        rect.setPosition(atom.x, atom.y);
+        rect.setFillColor(sf::Color::Cyan);
+        window_.setView(window_.getDefaultView());
+        window_.draw(rect);
+    }
+    window_.display();
+}
 
 
 
