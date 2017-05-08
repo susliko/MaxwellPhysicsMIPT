@@ -99,9 +99,6 @@ void Physics::update() {
                 sf::Vector2f v1n = projection(-delta, v1);
                 sf::Vector2f v2n = projection(delta, v2);
 
-                sf::Vector2f v1tg = v1 - v1n;
-                sf::Vector2f v2tg = v1 - v2n;
-
                 v1 = v1 - v1n + v2n;
                 v2 = v2 - v2n + v1n;
 
@@ -109,6 +106,9 @@ void Physics::update() {
                 atom1.vy = v1.y;
                 atom2.vx = v2.x;
                 atom2.vy = v2.y;
+
+                atom1.x = atom2.x + delta.x * 2 * r / sqrtf(lenghtSqr(delta));
+                atom1.y = atom2.y + delta.y * 2 * r / sqrtf(lenghtSqr(delta));
             }
         }
 }
