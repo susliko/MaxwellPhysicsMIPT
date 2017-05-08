@@ -9,4 +9,4 @@ struct Atom{
     float vy;
 };
 
-float getDistance(const Atom & atom1, const Atom & atom2);
+float getDistanceSqr(const Atom & atom1, const Atom & atom2);

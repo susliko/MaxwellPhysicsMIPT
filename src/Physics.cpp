@@ -5,7 +5,7 @@ Physics::Physics()
     : m(0)
     , r(10)
     , t(0)
-    , n(200)
+    , n(2)
     , maxVelocity_(250)
     , windowWidth_(1366 / 2)
     , windowHeight_(700)
@@ -86,10 +86,13 @@ void Physics::update() {
         for (int j = i + 1; j < n; j++) {
             Atom & atom1 = atoms_[i];
             Atom & atom2 = atoms_[j];
-            if (getDistance(atom1, atom2) < 2 * r) {
+            if (getDistanceSqr(atom1, atom2) < 4 * r * r) {
                 Atom tmp = atom1;
                 atom1 = atom2;
                 atom2 = tmp;
+
+//                sf::Vector2f delta(atom1.x - atom2.x, atom1.y - atom2.y);
+
             }
         }
 }

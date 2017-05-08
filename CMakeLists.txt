@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Define sources and executable
 set(EXECUTABLE_NAME "VPV")
-add_executable(${EXECUTABLE_NAME} src/main.cpp src/Physics.cpp include/Atom.h include/Physics.h src/Atom.cpp)
+add_executable(${EXECUTABLE_NAME} src/main.cpp src/Physics.cpp include/Atom.h include/Physics.h src/Atom.cpp include/Utility.h src/Utility.cpp)
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}" ${CMAKE_MODULE_PATH})
