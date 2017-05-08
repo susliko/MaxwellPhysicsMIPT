@@ -6,7 +6,7 @@
 
 class Physics{
 public:
-    Physics();
+    Physics(unsigned n, unsigned maxVelocity, float r);
 
     void run();
 
