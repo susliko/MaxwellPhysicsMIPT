@@ -11,15 +11,20 @@ Physics::Physics(unsigned n, unsigned maxVelocity, float r)
     , windowWidth_(650)
     , windowHeight_(700)
     , window_(sf::VideoMode(windowWidth_, windowHeight_), "Maxwell")
-    , dt(sf::seconds(1.f / 60.f)){}
+    , dt(sf::seconds(1.f / 60.f))
+    , drawer_(600, 600, "Maxwell", maxVelocity_, n, 12)
+{}
 
 
 
-void Physics::run() {
+void Physics::run()
+{
     buildArena();
 
     sf::Clock clock;
+    sf::Clock clock2;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    sf::Time sinceLastDraw = sf::Time::Zero;
     while (window_.isOpen()) {
         timeSinceLastUpdate += clock.restart();
         while (timeSinceLastUpdate > dt) {
@@ -28,13 +33,17 @@ void Physics::run() {
             update();
         }
         drawArena();
-        drawPlot();
+        if (clock2.getElapsedTime() > sf::seconds(0.15)) {
+            drawPlot();
+            clock2.restart();
+        }
     }
 }
 
 
 
-void Physics::buildArena() {
+void Physics::buildArena()
+{
     srand(256);
     for (unsigned i = 0; i < n; i++) {
         Atom atom;
@@ -48,7 +57,8 @@ void Physics::buildArena() {
 
 
 
-void Physics::processEvents() {
+void Physics::processEvents()
+{
     sf::Event event;
     while (window_.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -58,7 +68,8 @@ void Physics::processEvents() {
 }
 
 
-void Physics::update() {
+void Physics::update()
+{
     for (Atom & atom : atoms_) {
         // Обработка столкновений со стеной
         if (atom.x < r) {
@@ -115,7 +126,8 @@ void Physics::update() {
 
 
 
-void Physics::drawArena() {
+void Physics::drawArena()
+{
     window_.clear();
     for (const Atom & atom : atoms_) {
         sf::CircleShape shape(r);
@@ -130,4 +142,11 @@ void Physics::drawArena() {
 
 
 
-void Physics::drawPlot() {}
+void Physics::drawPlot()
+{
+    std::vector<double> velocities;
+    for (Atom a : atoms_) {
+        velocities.push_back(sqrt(a.vx * a.vx + a.vy * a.vy));
+    }
+    drawer_.draw(velocities);
+}
