@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Atom.h"
+#include "../include/PlotDrawer.h"
 #include "SFML/Graphics.hpp"
 
 class Physics{
@@ -18,6 +19,7 @@ private:
     void buildArena();
     void processEvents();
 
+private:
     std::vector<Atom> atoms_;
 
     const sf::Time dt;
@@ -30,4 +32,6 @@ private:
     const unsigned windowWidth_;
     const unsigned windowHeight_;
     sf::RenderWindow window_;
+
+    PlotDrawer drawer_;
 };

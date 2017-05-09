@@ -19,6 +19,7 @@ public:
             , _dV(_maxVelocity / double(numOfIntervals))
             , _distribution(_numOfIntervals, 0)
     {
+        std::cout << "got N = " << _N << std::endl;
         // Установка имени окна
         gp << "set term wxt title '" + name + "'\n";
         // Установка размеров окна
@@ -28,7 +29,9 @@ public:
         // Установка отображаемых диапазонов по обеим осям
         gp << "set xrange [0:"
               + std::to_string(_maxVelocity)
-              + "]\nset yrange [0:1]\n";
+              + "]\nset yrange [0:0.3]\n";
+        gp << "set xlabel 'V'\n";
+        gp << "set ylabel 'dN / N' font 20\n";
     }
 
     // Выводит гистограмму распределения по заданному массиву скоростей частиц

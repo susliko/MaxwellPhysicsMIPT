@@ -3,11 +3,12 @@
 
 int main(){
     // Общее число шариков
-    unsigned N = 20;
+    unsigned N = 300;
     // Начальная скорость каждого из шариков в пикселях в секунду
     unsigned maxVelocity = 250;
     // Радиус каждого шарика в пикселях
-    float r = 10;
+    float r = 7;
+
 
     // Сущность модели
     Physics maxwell(N, maxVelocity, r);
