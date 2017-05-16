@@ -12,7 +12,7 @@ Physics::Physics(unsigned n, unsigned maxVelocity, float r)
     , windowHeight_(700)
     , window_(sf::VideoMode(windowWidth_, windowHeight_), "Maxwell")
     , dt(sf::seconds(1.f / 60.f))
-    , drawer_(600, 600, "Maxwell", maxVelocity_, n, 12)
+    , drawer_(600, 600, "Maxwell", maxVelocity_, n, 20)
 {}
 
 
@@ -49,8 +49,8 @@ void Physics::buildArena()
         Atom atom;
         atom.x = rand() % windowWidth_;
         atom.y = rand() % windowHeight_;
-        atom.vx = (float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
-        atom.vy = (float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
+        atom.vx = maxVelocity_ / 2;//(float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
+        atom.vy = maxVelocity_ / 2;//(float)(rand() % (2 * maxVelocity_ + 1)) - maxVelocity_;
         atoms_.push_back(std::move(atom));
     }
 }
