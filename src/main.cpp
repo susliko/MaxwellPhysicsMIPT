@@ -3,15 +3,15 @@
 
 int main(){
     // Общее число шариков
-    unsigned N = 20;
+    unsigned N = 500;
     // Начальная скорость каждого из шариков в пикселях в секунду
-    unsigned maxVelocity = 250;
+    unsigned velocity = 250;
     // Радиус каждого шарика в пикселях
-    float r = 7;
+    float r = 3;
 
 
     // Сущность модели
-    Physics maxwell(N, maxVelocity, r);
+    Physics maxwell(N, velocity, r);
 
     maxwell.run();
 }

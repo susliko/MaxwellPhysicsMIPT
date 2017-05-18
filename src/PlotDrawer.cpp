@@ -26,5 +26,5 @@ void PlotDrawer::drawPlot() {
                              + std::to_string(_distribution[i] / double(_N)) + "fc lt 2 back\n";
         gp << toPlot;
     }
-    gp << "plot (2/3.14)**0.5*x**2/8*exp(-x**2/8)\n";
+    gp << "plot (2/3.1415)**0.5*(x/33)**2/30*exp(-(x/33)**2/16)\n";
 }
